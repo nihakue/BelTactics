@@ -1,5 +1,4 @@
 
--- TODO: switch to grid
 -- TODO: register player colision
 -- TODO: grid objects? 
 -- TODO: engineering
@@ -12,16 +11,18 @@ function love.load()
   
   players = {
     player1 = {
-      grid_x = 0,
-      grid_y = 0,
+      name = "syb",
+      grid_x = 16,
+      grid_y = 12,
       act_x = 200,
       act_y = 200,
       speed = 10,
       color = {50,150,50}
     },
     player2 = {
-      grid_x = 30,
-      grid_y = 22,
+      name = "shy",
+      grid_x = 18,
+      grid_y = 12,
       act_x = 200,
       act_y = 200,
       speed = 10,     
@@ -30,8 +31,22 @@ function love.load()
   }
 
   activeplayer = players.player1
-
 end
+
+function doFight(player1 , player2)
+  print("FIGHT: "..player1.name.." --> "..player2.name)
+end
+
+function testFight(x,y)
+  for idx, player in pairs(players) do
+    if player.grid_x == activeplayer.grid_x + x and player.grid_y == activeplayer.grid_y + y then
+      doFight(activeplayer, player)
+      return true
+    end
+  end
+  return false  
+end
+
 
 function love.update(dt)
   for idx, player in pairs(players) do
@@ -58,14 +73,20 @@ function love.keypressed(key)
       activeplayer = players.player1
     end
   elseif key == "up" then
-    activeplayer.grid_y = activeplayer.grid_y - 1
+    if not testFight(0 ,-1) then
+      activeplayer.grid_y = activeplayer.grid_y - 1
+    end
   elseif key == "down" then
-    activeplayer.grid_y = activeplayer.grid_y + 1
+    if not testFight(0 ,1) then
+      activeplayer.grid_y = activeplayer.grid_y + 1
+    end
   elseif key == "left" then
-    activeplayer.grid_x = activeplayer.grid_x - 1
+    if not testFight(-1 ,0) then
+      activeplayer.grid_x = activeplayer.grid_x - 1
+    end
   elseif key == "right" then
-    activeplayer.grid_x = activeplayer.grid_x + 1
+    if not testFight(1 ,0) then
+      activeplayer.grid_x = activeplayer.grid_x + 1
+    end
   end
-
-  print("ap:("..activeplayer.grid_x..","..activeplayer.grid_y..")")
 end
