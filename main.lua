@@ -12,16 +12,16 @@ function love.load()
   
   players = {
     player1 = {
-      grid_x = 256,
-      grid_y = 256,
+      grid_x = 0,
+      grid_y = 0,
       act_x = 200,
       act_y = 200,
       speed = 10,
       color = {50,150,50}
     },
     player2 = {
-      grid_x = 512,
-      grid_y = 512,
+      grid_x = 30,
+      grid_y = 22,
       act_x = 200,
       act_y = 200,
       speed = 10,     
@@ -35,8 +35,8 @@ end
 
 function love.update(dt)
   for idx, player in pairs(players) do
-    player.act_y = player.act_y - ((player.act_y - player.grid_y) * player.speed * dt)
-    player.act_x = player.act_x - ((player.act_x - player.grid_x) * player.speed * dt)
+    player.act_y = player.act_y - ((player.act_y - player.grid_y * 32) * player.speed * dt)
+    player.act_x = player.act_x - ((player.act_x - player.grid_x * 32) * player.speed * dt)
   end
 end
 
@@ -58,12 +58,14 @@ function love.keypressed(key)
       activeplayer = players.player1
     end
   elseif key == "up" then
-    activeplayer.grid_y = activeplayer.grid_y - 32
+    activeplayer.grid_y = activeplayer.grid_y - 1
   elseif key == "down" then
-    activeplayer.grid_y = activeplayer.grid_y + 32
+    activeplayer.grid_y = activeplayer.grid_y + 1
   elseif key == "left" then
-    activeplayer.grid_x = activeplayer.grid_x - 32
+    activeplayer.grid_x = activeplayer.grid_x - 1
   elseif key == "right" then
-    activeplayer.grid_x = activeplayer.grid_x + 32
+    activeplayer.grid_x = activeplayer.grid_x + 1
   end
+
+  print("ap:("..activeplayer.grid_x..","..activeplayer.grid_y..")")
 end
