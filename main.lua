@@ -1,5 +1,6 @@
 -- TODO: engineering
 -- TODO: player statuses/injuries
+require 'fighter'
 
 function love.load()
   bg = love.graphics.newImage("bg.png")
@@ -20,27 +21,12 @@ function love.load()
     py = 200
   }
 
+  syb = Fighter("syb", sybg, 16 , 12 , 200 , 200 , 10 , {50,150,50})
+  shy = Fighter("shy", shyg, 18 , 12 , 200 , 200 , 20 , {150,50,50})
+  
   players = {
-    player1 = {
-      name = "syb",
-      pic = sybg,
-      grid_x = 16,
-      grid_y = 12,
-      act_x = 200,
-      act_y = 200,
-      speed = 10,
-      color = {50,150,50}
-    },
-    player2 = {
-      name = "shy",
-      pic = shyg,
-      grid_x = 18,
-      grid_y = 12,
-      act_x = 200,
-      act_y = 200,
-      speed = 20,     
-      color = {150,50,50}
-    }
+    player1 = syb,
+    player2 = shy
   }
 
   state = "map"
