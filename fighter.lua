@@ -24,6 +24,6 @@ Fighter = class(
   end)
 
 function Fighter:draw()
-    love.graphics.setColor(player.color)
-    love.graphics.rectangle("fill", player.act_x, player.act_y, 32, 32)
+    love.graphics.setColor(self.color)
+    love.graphics.rectangle("fill", self.act_x, self.act_y, 32, 32)
 end

@@ -72,8 +72,7 @@ function love.draw()
   
   if state == "map" then
     for idx, player in pairs(players) do
-      love.graphics.setColor(player.color)
-      love.graphics.rectangle("fill", player.act_x, player.act_y, 32, 32)
+      player:draw()
     end
   end
   love.graphics.setColor(150,150,255)
