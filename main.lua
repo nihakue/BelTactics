@@ -1,6 +1,5 @@
 
--- TODO: register player colision
--- TODO: grid objects? 
+-- TODO: a more exciting fight pictures?
 -- TODO: engineering
 -- TODO: player statuses/injuries
 
