@@ -21,8 +21,8 @@ function love.load()
     py = 200
   }
 
-  syb = Fighter("syb", sybg, 16 , 12 , 200 , 200 , 10 , {50,150,50})
-  shy = Fighter("shy", shyg, 18 , 12 , 200 , 200 , 20 , {150,50,50})
+  syb = Fighter("syb", 15 , 20, sybg,  16 , 12 , 200 , 200 , 10 , {50,150,50})
+  shy = Fighter("shy", 30 , 20, shyg,  18 , 12 , 200 , 200 , 20 , {150,50,50})
   
   players = {
     player1 = syb,
@@ -35,10 +35,12 @@ function love.load()
 end
 
 function doFight(player1 , player2)
-  print("FIGHT: "..player1.name.." --> "..player2.name)
-  state = "fight"
-  leftFighter.g = player1.pic
-  rightFighter.g = player2.pic
+    print(player1.attack)
+    tohit = .5 * player1.attack / player2.defense
+    print("FIGHT: " .. player1.name .. " --> " .. player2.name .. ' ' .. tohit*100 .. '%')
+    state = "fight"
+    leftFighter.g = player1.pic
+    rightFighter.g = player2.pic
 end
 
 function testFight(x,y)
@@ -87,7 +89,7 @@ function love.keypressed(key)
     if key == ' ' then
       leftFighter.px = 250
     else
-      state ="map"
+      state = "map"
     end
     return
   end
